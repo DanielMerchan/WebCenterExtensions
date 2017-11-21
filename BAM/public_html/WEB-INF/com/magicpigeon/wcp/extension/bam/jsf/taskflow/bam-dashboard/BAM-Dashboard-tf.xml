@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<adfc-config xmlns="http://xmlns.oracle.com/adf/controller" version="1.2">
+  <task-flow-definition id="BAM-Dashboard-tf">
+    <description>Loads a BAM Dashboard calculated by the given parameters</description>
+    <display-name>BAM Dashboard</display-name>
+    <default-activity>generateDashboardURL</default-activity>
+    <data-control-scope>
+      <shared/>
+    </data-control-scope>
+    <input-parameter-definition id="__1">
+      <name>bamConnectionName</name>
+      <value>#{pageFlowScope.bamTaskFlowParameters.bamConnectionName}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__2">
+      <name>project</name>
+      <value>#{pageFlowScope.bamTaskFlowParameters.project}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__3">
+      <name>dashboard</name>
+      <value>#{pageFlowScope.bamTaskFlowParameters.dashboard}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <input-parameter-definition id="__4">
+      <name>dashboardParameters</name>
+      <value>#{pageFlowScope.bamTaskFlowParameters.dashboardParameters}</value>
+      <class>java.lang.String</class>
+    </input-parameter-definition>
+    <managed-bean id="__5">
+      <managed-bean-name>bamTaskFlowParameters</managed-bean-name>
+      <managed-bean-class>com.magicpigeon.wcp.extension.bam.jsf.BAMTaskFlowParameters</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <managed-bean id="__6">
+      <managed-bean-name>bamTaskFlowURLGenerator</managed-bean-name>
+      <managed-bean-class>com.magicpigeon.wcp.extension.bam.jsf.BAMDashboardURLGenerator</managed-bean-class>
+      <managed-bean-scope>pageFlow</managed-bean-scope>
+    </managed-bean>
+    <method-call id="generateDashboardURL">
+      <method>#{pageFlowScope.bamTaskFlowURLGenerator.generateURL}</method>
+      <outcome>
+        <fixed-outcome>showDashboard</fixed-outcome>
+      </outcome>
+    </method-call>
+    <view id="bamDashboard">
+      <page>/WEB-INF/com/magicpigeon/wcp/extension/bam/jsf/taskflow/bam-dashboard/bamDashboard.jsff</page>
+    </view>
+    <control-flow-rule id="__7">
+      <from-activity-id>generateDashboardURL</from-activity-id>
+      <control-flow-case id="__8">
+        <from-outcome>showDashboard</from-outcome>
+        <to-activity-id>bamDashboard</to-activity-id>
+      </control-flow-case>
+    </control-flow-rule>
+    <use-page-fragments/>
+  </task-flow-definition>
+</adfc-config>

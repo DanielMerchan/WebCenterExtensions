@@ -1,0 +1,47 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<SDM>
+   <OverallProperties
+      id="OverallProperties1"/>
+   <MethodCall
+      id="MethodCall2">
+      <property
+         name="activityId">generateDashboardURL</property>
+      <property
+         name="x">190.0</property>
+      <property
+         name="start">true</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>generateDashboardURL&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
+      <property
+         name="y">239.33887</property>
+      <property
+         name="exceptionHandler">false</property>
+   </MethodCall>
+   <View
+      id="View3">
+      <property
+         name="activityId">bamDashboard</property>
+      <property
+         name="pageFragment">true</property>
+      <property
+         name="x">483.0</property>
+      <property
+         name="description">&lt;html>&lt;p>&lt;b>bamDashboard&lt;/b>&lt;/p>&lt;p>Activity Type:  View&lt;/p></property>
+      <property
+         name="y">240.84473</property>
+      <property
+         name="page">/WEB-INF/com/magicpigeon/wcp/extension/bam/jsf/taskflow/bam-dashboard/bamDashboard.jsff</property>
+      <property
+         name="exceptionHandler">false</property>
+   </View>
+   <ControlFlowCase
+      islink="true"
+      id="ControlFlowCase4"
+      from="MethodCall2"
+      to="View3">
+      <property
+         name="fromOutcome">showDashboard</property>
+      <property
+         name="sdm:polyPoints">R50,231.0,238.98828,442.0,240.49414,L50</property>
+   </ControlFlowCase>
+</SDM>
