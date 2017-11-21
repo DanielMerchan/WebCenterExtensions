@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>WebCenterPortalExtensions</groupId>
-  <artifactId>WebCenterPortalExtensions</artifactId>
+  <artifactId>wcp-extensions</artifactId>
   <version>12.2.1-2-0</version>
   <packaging>pom</packaging>
   <build>
@@ -32,4 +31,5 @@
       <type>war</type>
     </dependency>
   </dependencies>
+  <groupId>com.magicpigeon.wcp.extension</groupId>
 </project>
