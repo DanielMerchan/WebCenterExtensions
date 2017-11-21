@@ -6,8 +6,9 @@ Extensions (Task Flows and Portlets) which brings new integrations that can be u
 **Java JDK**: 1.8+
 
 # Releases
-- **12.2.1.2-0**: Base Release including WCP-BAM integration. It loads the BAM Dashboards by using ProxyPage BAM Composer.
-- **12.2.1.2-1**: Enhancements on BAM Integration (Error Handling).
+- **12.2.1.2-0 (Future)**: Base Release including WCP-BAM integration. It loads the BAM Dashboards by using ProxyPage BAM Composer.
+- **12.2.1.2-1 (Future)**: Enhancements on BAM Integration (Lazy Loading, Error Handling, Logging and clean code).
+- **12.2.1.3-0 (Future)**: Upgrade to 12.2.1.3 release.
 
 #### Installation
 TBA
@@ -27,4 +28,4 @@ Single Sign-On between Oracle WebCenter Portal and Oracle BAM is required to avo
 
 ### CommonView
 This project includes the following artifacts:
-- **Task Flow Template**: Including Lazy Loading and common Input Parameters for WCP Custom Task Flows.
+- **Task Flow Template**: Including Lazy Loading mechanism and common Input Parameters for WCP Custom Task Flows.
