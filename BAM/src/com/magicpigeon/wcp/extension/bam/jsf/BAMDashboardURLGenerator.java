@@ -1,9 +1,18 @@
 package com.magicpigeon.wcp.extension.bam.jsf;
 
+import com.magicpigeon.wcp.extension.bam.util.BAMLogger;
+import com.magicpigeon.wcp.extension.bam.resource.BAMLibraryBundle;
+
+import com.magicpigeon.wcp.extension.bam.util.BAMTaskFlowHelper;
+
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 
 import java.net.URLEncoder;
+
+import javax.faces.application.FacesMessage;
+
+import javax.naming.NamingException;
 
 import oracle.adf.share.logging.ADFLogger;
 
@@ -27,12 +36,19 @@ public final class BAMDashboardURLGenerator implements Serializable {
     private static final String BAM_PROXY_PAGE = "bam/composer/faces/proxypage";
     
     // Outcomes
-    private static final String SHOW_DASHBOARD = "showDashboard";
+    private static final String SHOW_DASHBOARD_OUTCOME = "showDashboard";
+    private static final String ERROR_OUTCOME = "toError";
+    private static final String INPUT_PARAMETERS_ERROR_OUTCOME = "toConfigError";
     
     /**
      * Logging
      */
-    private static ADFLogger LOGGER = ADFLogger.createADFLogger(BAMDashboardURLGenerator.class);
+    private static ADFLogger LOGGER = BAMLogger.getLogger();;
+    
+    /**
+     * Class Name
+     */
+    private static String CLASS_NAME = BAMDashboardURLGenerator.class.getName(); 
 
     /*
      * Generated URL for loading BAM Dashboards
@@ -44,8 +60,9 @@ public final class BAMDashboardURLGenerator implements Serializable {
      * @return
      */
     public String generateURL() {
-        
-        String result = BAMDashboardURLGenerator.SHOW_DASHBOARD;
+        final String METHOD_NAME = "generateUrl";
+        LOGGER.entering(CLASS_NAME, METHOD_NAME);
+        String result = BAMDashboardURLGenerator.SHOW_DASHBOARD_OUTCOME;
         String url = null;
         StringBuilder urlBuilder = new StringBuilder();
         BAMTaskFlowParameters bamTaskFlowParameters =
@@ -56,18 +73,18 @@ public final class BAMDashboardURLGenerator implements Serializable {
                 LOGGER.finest("BAM Task Flow Parameters");
                 LOGGER.finest(bamTaskFlowParameters.toString());
             }
+            String bamConnectionName = bamTaskFlowParameters.getBamConnectionName();
             try {
-                String bamConnectionName = bamTaskFlowParameters.getBamConnectionName();
                 if ((bamConnectionName != null) && (!bamConnectionName.isEmpty())) {
                     BAMProviderImpl mBAMConnection = BAMTaskFlowHelper.GetConnection(bamConnectionName);
                     if (mBAMConnection != null) {
                         url = BAMTaskFlowHelper.generateURLFromBAMConn(mBAMConnection);
                     }
                 }
-            } catch (Exception e) {
-                LOGGER.warning(e);
-                result = "error";
-                BAMTaskFlowHelper.addErrorMessageToFacesContext();
+            } catch (NamingException e) {
+                LOGGER.logp(ADFLogger.INTERNAL_ERROR, CLASS_NAME, METHOD_NAME, BAMLibraryBundle.WCP_EXTENSION_BAM_CONNECTION_ERROR, new Object[]{bamConnectionName},e);
+                result = BAMDashboardURLGenerator.ERROR_OUTCOME;
+                BAMTaskFlowHelper.addMessageToFacesContext(BAMLibraryBundle.WCP_EXTENSION_BAM_CONNECTION_ERROR, FacesMessage.SEVERITY_ERROR);
             }
 
             if (url != null) {
@@ -75,7 +92,6 @@ public final class BAMDashboardURLGenerator implements Serializable {
                 urlBuilder.append(url + BAM_PROXY_PAGE);
             }
             if (!urlBuilder.toString().isEmpty()) {
-                StringBuilder parameterBuilder = new StringBuilder();
                 try {
                     urlBuilder.append("?project=");
                     urlBuilder.append(URLEncoder.encode(bamTaskFlowParameters.getProject(), "UTF-8") + "&");
@@ -85,6 +101,9 @@ public final class BAMDashboardURLGenerator implements Serializable {
                     urlBuilder.append(URLEncoder.encode(bamTaskFlowParameters.getDashboardParameters(), "UTF-8"));
                     urlBuilder.append(")");
                 } catch (UnsupportedEncodingException e) {
+                    LOGGER.logp(ADFLogger.WARNING, CLASS_NAME, METHOD_NAME, BAMLibraryBundle.WCP_EXTENSION_BAM_UNSUPPORTED_ENCONDING_PARAM, new Object[]{bamConnectionName},e);
+                    result = BAMDashboardURLGenerator.INPUT_PARAMETERS_ERROR_OUTCOME;
+                    BAMTaskFlowHelper.addMessageToFacesContext(BAMLibraryBundle.WCP_EXTENSION_BAM_UNSUPPORTED_ENCONDING_PARAM, FacesMessage.SEVERITY_WARN);
                 }
 
             }

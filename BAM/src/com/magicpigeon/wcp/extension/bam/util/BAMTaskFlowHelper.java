@@ -1,4 +1,9 @@
-package com.magicpigeon.wcp.extension.bam.jsf;
+package com.magicpigeon.wcp.extension.bam.util;
+
+import com.magicpigeon.wcp.extension.bam.resource.BAMLibraryBundle;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.el.ELContext;
 
@@ -22,6 +27,11 @@ import org.apache.commons.lang.StringUtils;
  * @author Daniel Merchan Garcia & Magic Pigeon Ltd
  */
 public final class BAMTaskFlowHelper {
+    
+    /**
+     * Base Resource Bundle for BAM Extension
+     */
+    public static final String BAM_EXTENSION_BASE_BUNDLE_NAME = BAMLibraryBundle.class.getName();
     
     /**
      * Default Constructor
@@ -59,21 +69,42 @@ public final class BAMTaskFlowHelper {
      * @throws NamingException
      */
     public static BAMProviderImpl GetConnection(String connectionName) throws NamingException {
-        // FIXME: Try to find an alternative for retrieving the BAMConnection from MBean
         Context ctx = ADFContext.getCurrent().getConnectionsContext();
         BAMProviderImpl bamProvider = (BAMProviderImpl) ctx.lookup(connectionName);;
         return bamProvider;
     }
-
+    
+    /**
+     * Retrieves the current locale loaded in the ADF Context
+     * @return Locale
+     */
+    private static final Locale getLocale() {
+        Locale currLocale = ADFContext.getCurrent().getLocale();
+        if (currLocale == null) {
+          currLocale = Locale.getDefault();
+        }
+        return currLocale;
+    }
+    
+    /**
+     * Get the Resource Bundle Message base on the provided message key
+     * @param messageKey - Message Key of the Resource Bundle
+     */
+    public static final String getResourceString (String messageKey) {
+        ResourceBundle bamResBundle = ResourceBundle.getBundle(BAM_EXTENSION_BASE_BUNDLE_NAME,getLocale(),Thread.currentThread().getContextClassLoader());
+        return bamResBundle.getString(messageKey);
+    }
+ 
     /**
      * Display an error when the Input Parameters of the Task Flow has been setup unproperly
+     * @param messageKey - Message to display in the Faces Message
+     * @param severity - Severity of the Message
      */
-    public static void addErrorMessageToFacesContext() {
-        // FIXME: Improve the Error showing + multilanguage
+    public static void addMessageToFacesContext(String messageKey, FacesMessage.Severity severity) {
         FacesContext fct = FacesContext.getCurrentInstance();
         FacesMessage message = new FacesMessage();
-        message.setSummary("Error Occurred Please contact the administartor");
-        message.setSeverity(FacesMessage.SEVERITY_FATAL);
+        message.setSummary(getResourceString(messageKey));
+        message.setSeverity(severity);
         fct.addMessage(null, message);
     }
 
@@ -84,29 +115,25 @@ public final class BAMTaskFlowHelper {
      * @return String
      */
     public static String generateURLFromBAMConn(BAMProviderImpl mBAMConnection) {
-        System.out.println(mBAMConnection.toString());
-        System.out.println(mBAMConnection.getBAMConnectionMode());
-        System.out.println(mBAMConnection.getBAMServerHost());
-        System.out.println(mBAMConnection.getBAMServerPort());
-        System.out.println(mBAMConnection.getBAMWsilRootUrl());
-        System.out.println(mBAMConnection.getWebTierHost());
-        System.out.println(mBAMConnection.getWebTierHostPort());
-        System.out.println(mBAMConnection.getWebTierProtocol());
-//        StringBuilder url = new StringBuilder(StringUtils.EMPTY);
-//        // 1. URL using the Front (Web Tier or LBR)
-//        final String webTierProtocol = mBAMConnection.getWebTierProtocol();
-//        final String webTierHost = mBAMConnection.getWebTierHost();
-//        int webTierHostPort = mBAMConnection.getWebTierHostPort();
-//        // 2. URL directly to the WL Cluster / Managed Server
-//        mBAMConnection.get
-//        if (StringUtils.isNotEmpty(webTierProtocol) && StringUtils.isNotEmpty(webTierHost)) {
-//            url.append(webTierProtocol);
-//            url.append("://");
-//            url.append(webTierHost);
-//            url.append(":");
-//            url.append(String.valueOf(webTierHostPort));
-//        } else if (StringUtils.isNotEmpty(arg0))
-        return "http://wcp12c:7004";
-                                                        
+        StringBuilder url = new StringBuilder(StringUtils.EMPTY);
+        final String webTierProtocol = mBAMConnection.getWebTierProtocol();
+        url.append(webTierProtocol);
+        url.append("://");
+        // 1. URL using the Front (Web Tier or LBR)
+        final String webTierHost = mBAMConnection.getWebTierHost();
+        int webTierHostPort = mBAMConnection.getWebTierHostPort();
+        final String bamServerHost = mBAMConnection.getBAMServerHost();
+        final String bamServerPort = mBAMConnection.getBAMServerPort();
+        // 2. URL directly to the WL Cluster / Managed Server
+        if (StringUtils.isNotEmpty(webTierHost)) {
+            url.append(webTierHost);
+            url.append(":");
+            url.append(String.valueOf(webTierHostPort));
+        } else if (StringUtils.isNotEmpty(bamServerHost)) {
+            url.append(bamServerHost);
+            url.append(":");
+            url.append(String.valueOf(bamServerPort));
+        }
+        return url.toString();                                       
     }
 }

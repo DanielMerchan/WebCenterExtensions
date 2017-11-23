@@ -25,16 +25,19 @@ public class BAMTaskFlowParameters implements Serializable {
     
     /**
      * Project Name
+     * Example: ProcessAnalytics_v2
      */
     private String project;
     
     /**
      * Dashbaord Name
+     * Example: CycleTime
      */
     private String dashboard;
     
     /**
-     * Dashboard Parameters ([key1]=[value1],[key2]=[value2]...)
+     * Dashboard Parameters - Without the brackets
+     * Example: ProcessSelection=[ALL];TimePeriodInDays=30;ShowTopN=10;
      */
     private String dashboardParameters;
     

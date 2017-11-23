@@ -7,13 +7,13 @@
       <property
          name="activityId">generateDashboardURL</property>
       <property
-         name="x">190.0</property>
+         name="x">196.0</property>
       <property
          name="start">true</property>
       <property
          name="description">&lt;html>&lt;p>&lt;b>generateDashboardURL&lt;/b> (Default Activity)&lt;/p>&lt;p>Activity Type:  Method Call&lt;/p></property>
       <property
-         name="y">239.33887</property>
+         name="y">240.6377</property>
       <property
          name="exceptionHandler">false</property>
    </MethodCall>
@@ -42,6 +42,6 @@
       <property
          name="fromOutcome">showDashboard</property>
       <property
-         name="sdm:polyPoints">R50,231.0,238.98828,442.0,240.49414,L50</property>
+         name="sdm:polyPoints">R50,237.0,240.28711,442.0,240.49414,L50</property>
    </ControlFlowCase>
 </SDM>
