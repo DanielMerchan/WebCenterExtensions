@@ -6,8 +6,9 @@ Extensions (Task Flows and Portlets) which brings new integrations that can be u
 **Java JDK**: 1.8+
 
 # Releases
-- **12.2.1.2-0**: Base Release including WCP-BAM integration. It loads the BAM Dashboards by using ProxyPage BAM Composer.
-- **12.2.1.2-1 (Future)**: Enhancements on WebCenter Extension Task Flows for including Lazy Loading.
+- **12.2.1.2-0 (Current)**: Base Release including WCP-BAM integration. It loads the BAM Dashboards by using ProxyPage BAM Composer.
+- **12.2.1.2-1 (Future)**: Include Shared-Library Deployer Project.
+- **12.2.1.2-2 (Future)**: Enhancements on WebCenter Extension Task Flows for including Lazy Loading.
 - **12.2.1.3-0 (Future)**: Upgrade to 12.2.1.3 release.
 
 #### Installation
