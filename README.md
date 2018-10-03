@@ -33,3 +33,7 @@ Single Sign-On between Oracle WebCenter Portal and Oracle BAM is required to avo
    - **Dashboard**: Name of the BAM Dashboard to embed (E.g: ProcessAnalyticsSpringboard)
    - **Dashboard Parameters** (Optional): URL Parameters of the Dashboard (E.g.: ?...)
    - **Project**: BAM Project the dashboard belongs to (E.g: ProcessAnalytics_v2)
+- Configure Display Options:
+   - Strecht Content: True
+- Configure Content Style:
+   - Give a minimum height. E.g.: 800px
