@@ -31,11 +31,18 @@ Single Sign-On between Oracle WebCenter Portal and Oracle BAM is required to avo
 ### Usage:
 - Add BAM Dashboard Task Flow into WCP Resource Catalog
 - Add BAM Dashboard Task Flow into a WCP Portal Page.
-- Configure BAM Dashboard Task Flow Input Parameters.
+- Configure BAM Dashboard Task Flow Input Parameters. (A BAM Dashboard Proxy Page URL looks like http://wcp12c:7004/bam/composer/faces/proxypage?DashboardParameters=%28ProcessSelection%3D%5BALL%5D%3B%29&dashboard=ProcessHealth&project=ProcessAnalytics_v2)
+The importan part is *DashboardParameters=%28ProcessSelection%3D%5BALL%5D%3B%29&dashboard=ProcessHealth&project=ProcessAnalytics_v2* The rest is built by using the BAM Connection name configured.
+
    - **BAM Connection Name**: Provide the ADF Connection Name created for BAM. (E.g. BAMConnection)
-   - **Dashboard**: Name of the BAM Dashboard to embed (E.g: ProcessAnalyticsSpringboard)
-   - **Dashboard Parameters** (Optional): URL Parameters of the Dashboard (E.g.: ?...)
-   - **Project**: BAM Project the dashboard belongs to (E.g: ProcessAnalytics_v2)
+
+   - **Dashboard**: Name of the BAM Dashboard to embed. It corresponds to the URL parameter *dashboard*
+
+   - **Dashboard Parameters** (Optional): URL Parameters of the Dashboard. It corresponds to the URL parameter *DashboardParameters* 
+E.g.: If the URL of the Dashboard contains DashboardParameters=(ProcessSelection%3D[ALL]%3B)&dashboard=ProcessHealth&project=ProcessAnalytics_v2 Then it should be passed: ProcessSelection%3D[ALL]%3B
+
+   - **Project**: BAM Project the dashboard belongs. It matches to the URL parameter *project*.
+
 - Configure Display Options:
    - Strecht Content: True
 - Configure Content Style:
