@@ -8,7 +8,9 @@ Extensions (Task Flows and Portlets) which brings new integrations that can be u
 # Releases
 - **12.2.1.2-0 (Current)**: Base Release including WCP-BAM integration. It loads the BAM Dashboards by using ProxyPage BAM 
 
-### BAM (WCP-BAM Integration)
+## Extensions
+
+### BAM Dashboard
 This project includes the following artifacts:
 
 - **BAM Dashboard Task Flow**: Embeds a BAM Dashboard Task Flow by using the **BAM Composer Proxy Page**
