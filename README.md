@@ -11,6 +11,9 @@ Extensions (Task Flows and Portlets) which brings new integrations that can be u
 # Extensions / Components
 
 ## BAM Dashboard
+
+![alt text](https://raw.githubusercontent.com/DanielMerchan/WebCenterExtensions/master/BAM-WCP.png)
+
 This project includes the following artifacts:
 
 - **BAM Dashboard Task Flow**: Embeds a BAM Dashboard Task Flow by using the **BAM Composer Proxy Page**
