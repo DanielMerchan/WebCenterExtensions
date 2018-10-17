@@ -46,8 +46,8 @@ The importan part is *DashboardParameters=%28ProcessSelection%3D%5BALL%5D%3B%29&
    
 ## Login
 This project contains the following artifacts:
-- **LoginInternalAPI Task Flow**: This Task Flow uses Internal WebCenter Portal 12c API (EL Expressions) to perform Login. It is compatible with OAM / WCP Login. *Note: Using Internal API is riskly as it can be modified in future releases / patches"
-- **LoginJavaAPI Task Flow**: This Task Flow uses Jakarta EE (formerly called Java EE) HTTPServletRequest API for doing authentication. *Note: The WebLogic Servlets Authenticators has been deprecated in 12c"
+- **LoginInternalAPI Task Flow**: This Task Flow uses Internal WebCenter Portal 12c API (EL Expressions) to perform Login. It is compatible with OAM / WCP Login. *Note: Using Internal API is riskly as it can be modified in future releases / patches*
+- **LoginJavaAPI Task Flow**: This Task Flow uses Jakarta EE (formerly called Java EE) HTTPServletRequest API for doing authentication. *Note: The WebLogic Servlets Authenticators has been deprecated in 12c*
 
 ### Installation
 - Deploy the ADF JAR Library as a shared-library using the Deployer Project and reference it from your Portal Extension shared library (extend.spaces.webapp.war)
