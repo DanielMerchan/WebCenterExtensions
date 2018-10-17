@@ -113,6 +113,7 @@ public final class BAMTaskFlowHelper {
      * @param mBAMConnection - BAM Connection
      * @return String
      */
+    // FIXME: Remove the dependency with BAM Connection
 //    public static String generateURLFromBAMConn(BAMProviderImpl mBAMConnection) {
 //        StringBuilder url = new StringBuilder(StringUtils.EMPTY);
 //        final String webTierProtocol = mBAMConnection.getWebTierProtocol();

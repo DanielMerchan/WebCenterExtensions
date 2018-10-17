@@ -10,13 +10,11 @@ import javax.faces.context.FacesContext;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import oracle.adf.share.ADFContext;
 import oracle.adf.share.logging.ADFLogger;
 
 import oracle.webcenter.framework.service.AnalyticsUtil;
-
 import oracle.webcenter.framework.service.Utility;
 
 /**
@@ -56,10 +54,6 @@ public final class LoginBackingBean {
         HttpServletRequest req = (HttpServletRequest) ADFContext.getCurrent()
                                                                 .getEnvironment()
                                                                 .getRequest();
-
-        HttpServletResponse res = (HttpServletResponse) ADFContext.getCurrent()
-                                                                  .getEnvironment()
-                                                                  .getResponse();
         int loginOutcome = 1;
         try {
             req.login(mUserName, mPassword);
@@ -88,18 +82,34 @@ public final class LoginBackingBean {
         return "";
     }
 
+    /**
+     * Set the introduced user name
+     * @param mUserName
+     */
     public void setMUserName(String mUserName) {
         this.mUserName = mUserName;
     }
 
+    /**
+     * Get the introduced user name
+     * @return String
+     */
     public String getMUserName() {
         return mUserName;
     }
 
+    /**
+     * Set the password written
+     * @param mPassword
+     */
     public void setMPassword(String mPassword) {
         this.mPassword = mPassword;
     }
 
+    /**
+     * Get the password written
+     * @return String
+     */
     public String getMPassword() {
         return mPassword;
     }

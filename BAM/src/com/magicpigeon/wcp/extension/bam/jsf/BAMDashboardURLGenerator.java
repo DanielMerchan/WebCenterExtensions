@@ -52,6 +52,7 @@ public final class BAMDashboardURLGenerator implements Serializable {
         final String METHOD_NAME = "generateUrl";
         LOGGER.entering(CLASS_NAME, METHOD_NAME);
         String result = BAMDashboardURLGenerator.SHOW_DASHBOARD_OUTCOME;
+        // FIXME: Remove the dependency with BAM Connection
 //        String url = null;
 //        StringBuilder urlBuilder = new StringBuilder();
 //        BAMTaskFlowParameters bamTaskFlowParameters =
