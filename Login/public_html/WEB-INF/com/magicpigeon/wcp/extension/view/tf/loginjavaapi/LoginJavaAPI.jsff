@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich">
+  <af:subform id="s1" defaultCommand="b1">
+    <af:panelGroupLayout layout="vertical" id="pgl2" inlineStyle="width:300px;" rendered="#{!securityContext.authenticated}">
+      <af:panelGridLayout id="pgl1">
+        <af:gridRow marginTop="5px" height="auto" id="gr1">
+          <af:gridCell marginStart="5px" width="30%" id="gc1">
+            <af:outputFormatted value="User Name" id="of1"/>
+          </af:gridCell>
+          <af:gridCell marginStart="5px" width="50%f" marginEnd="5px" id="gc2">
+            <af:inputText simple="true" label="#{null}" value="#{backingBeanScope.loginBackingBean.MUserName}" id="it1"/>
+          </af:gridCell>
+        </af:gridRow>
+        <af:gridRow marginTop="5px" height="auto" id="gr2">
+          <af:gridCell marginStart="5px" width="30%" id="gc3">
+            <af:outputFormatted value="Password" id="of2"/>
+          </af:gridCell>
+          <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc4">
+            <af:inputText simple="true" label="#{null}" value="#{backingBeanScope.loginBackingBean.MPassword}" secret="true" id="it2"/>
+          </af:gridCell>
+        </af:gridRow>
+        <af:gridRow marginTop="5px" height="auto" marginBottom="5px" id="gr3">
+          <af:gridCell marginStart="5px" width="30%" id="gc5"/>
+          <af:gridCell marginStart="5px" width="50%" marginEnd="5px" id="gc6" halign="end">
+            <af:button text="Login" id="b1" action="#{backingBeanScope.loginBackingBean.doLogin}"/>
+          </af:gridCell>
+        </af:gridRow>
+      </af:panelGridLayout>
+    </af:panelGroupLayout>
+  </af:subform>
+</ui:composition>

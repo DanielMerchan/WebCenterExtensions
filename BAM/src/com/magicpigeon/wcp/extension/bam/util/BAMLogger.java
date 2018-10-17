@@ -1,6 +1,5 @@
 package com.magicpigeon.wcp.extension.bam.util;
 
-
 import oracle.adf.share.logging.ADFLogger;
 
 /**

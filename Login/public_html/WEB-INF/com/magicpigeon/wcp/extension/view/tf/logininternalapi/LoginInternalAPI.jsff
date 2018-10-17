@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:trh="http://myfaces.apache.org/trinidad/html">
+    
+    <!-- The Manage Beans used in this Fragment are available in Oracle WebCenter Portal Scope, 
+    it is not needed to be registered as part of the Task Flow 
+    This Task Flow is compatible with OAM and WCP Default Login behaviour
+    IMPORTANT: It uses internal code which is suitable for changes in patches or future releases
+    -->
+    <af:subform id="loginForm" rendered="#{!security.authenticated}"
+                defaultCommand="#{(o_w_wa__i_v_w_Login.OAMEnabled || o_w_wa__i_v_w_Login.WLS) ? 'submitLogin' : 'submitLoginiServlet'}">
+        <af:panelGroupLayout id="logfrmpgl1" layout="vertical" inlineStyle="white-space:nowrap;">
+            <af:outputText id="opt2" rendered="#{sessionScope.o_w_wa_loginFailedText}"
+                           value="#{uib_o_w_w_r_WebCenter.SORRY_INVALID_USERPASS}" styleClass="loginAlert"
+                           binding="#{requestScope.o_w_wa_loginFailed}" clientComponent="true"></af:outputText>
+            <af:outputText value="#{uib_o_w_w_r_WebCenter.LOGIN_USER_NAME}" styleClass="LoginLabel" id="usrot"/>
+            <f:verbatim>         
+                <input type="text" id="username" name="j_username" maxlength="200" class="WCInputText"
+                       size="30" autocomplete="off"/>         
+                <input type="hidden" id="wcEncoding" name="j_character_encoding" value="UTF-8"/>       
+            </f:verbatim>
+            <af:outputText value="#{uib_o_w_w_r_WebCenter.LOGIN_PASSWORD}" id="pwdot" styleClass="Password"/>
+            <f:verbatim>         
+                <input type="password" name="j_password" maxlength="50" class="WCInputText" size="30"
+                       autocomplete="off"/>       
+            </f:verbatim>
+            <af:button id="submitLoginiServlet" partialSubmit="false" styleClass="loginbtn"
+                       disabled="#{security.authenticated}"
+                       rendered="#{!(o_w_wa__i_v_w_Login.OAMEnabled ||  o_w_wa__i_v_w_Login.WLS)}"
+                       text="#{uib_o_w_w_r_WebCenter.LOGIN_LOGON_BUTTON} ">
+                <af:clientListener type="action" method="wcPostLoginForm"/>
+            </af:button>
+            <af:button id="submitLogin" partialSubmit="false" action="#{o_w_wa__i_v_w_Login.LoginAndNavigate}"
+                       styleClass="loginbtn" disabled="#{security.authenticated}"
+                       rendered="#{o_w_wa__i_v_w_Login.OAMEnabled || o_w_wa__i_v_w_Login.WLS}"
+                       text="#{uib_o_w_w_r_WebCenter.LOGIN_LOGON_BUTTON} "/>
+            <af:resource type="javascript">
+              function wcPostLoginForm(event) {
+                  var form = document.forms[0];
+                  form.action = 'wcAuthentication/j_security_check';
+                  form.submit();
+                  event.cancel();
+              }
+            </af:resource>
+        </af:panelGroupLayout>
+    </af:subform>
+</ui:composition>

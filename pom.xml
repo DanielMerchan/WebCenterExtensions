@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>wcp-extensions</artifactId>
-  <version>12.2.1-2-0</version>
+  <version>12.2.1-3-0</version>
   <packaging>pom</packaging>
   <build>
     <resources>
@@ -16,19 +16,32 @@
   </build>
   <modules>
     <module>BAM</module>
+    <module>Login</module>
   </modules>
   <dependencies>
     <dependency>
       <groupId>WebCenterPortalExtensions</groupId>
       <artifactId>BAM</artifactId>
-      <version>12.2.1-2-0</version>
+      <version>12.2.1-3-0</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>WebCenterPortalExtensions</groupId>
       <artifactId>BAM</artifactId>
-      <version>12.2.1-2-0</version>
+      <version>12.2.1-3-0</version>
       <type>war</type>
+    </dependency>
+    <dependency>
+      <groupId>com.magicpigeon.wcp.extension</groupId>
+      <artifactId>Login</artifactId>
+      <version>12.2.1-3-0</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.magicpigeon.wcp.extension</groupId>
+      <artifactId>Login</artifactId>
+      <version>12.2.1-3-0</version>
+      <type>jar</type>
     </dependency>
   </dependencies>
   <groupId>com.magicpigeon.wcp.extension</groupId>

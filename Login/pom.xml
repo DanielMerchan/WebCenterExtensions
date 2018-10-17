@@ -2,10 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.magicpigeon.wcp.extension</groupId>
-  <artifactId>bam-taskflows-view</artifactId>
+  <artifactId>login-taskflows-view</artifactId>
   <version>12.2.1-3-0</version>
-  <description>Generated POM from JDeveloper for project BAM</description>
-  <packaging>jar</packaging>
+  <description>Project for Login</description>
   <dependencies>
     <dependency>
       <groupId>com.oracle.adf.library</groupId>
@@ -161,6 +160,27 @@
       <scope>compile</scope>
       <type>jar</type>
     </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>WebCenter-Service</artifactId>
+      <version>12.2.1-3-0</version>
+      <scope>provided</scope>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>WebCenter-Service-View</artifactId>
+      <version>12.2.1-3-0</version>
+      <scope>provided</scope>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>com.oracle.adf.library</groupId>
+      <artifactId>WebCenter-Common-View</artifactId>
+      <version>12.2.1-3-0</version>
+      <scope>provided</scope>
+      <type>pom</type>
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src/</sourceDirectory>
@@ -193,7 +213,7 @@
             ${oracleHome}/jdeveloper/jdev/bin/ojmake.exe
           </ojmake>
           <files>
-            ${basedir}/BAM.jpr
+            ${basedir}/Login.jpr
           </files>
         </configuration>
         <executions>
@@ -217,10 +237,10 @@
             ${basedir}/../WebCenterPortalExtensions.jws
           </workspace>
           <project>
-            BAM
+            Login
           </project>
           <profile>
-            bam-taskflows-view
+            login-taskflows-view
           </profile>
           <outputfile>
             ${project.build.directory}/${project.build.finalName}.jar
@@ -243,4 +263,5 @@
     <version>12.2.1-3-0</version>
     <relativePath></relativePath>
   </parent>
+  <packaging>jar</packaging>
 </project>

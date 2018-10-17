@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Created-By: Magic Pigeon LTD
+Built-By: builder
+Build-Jdk: 1.8.0_111
+Extension-Name: com.magicpigeon.wcp.extension
+Implementation-Label: 12.2.1.3
+Implementation-Title: Magic Pigeon Portal Extensions
+Implementation-Vendor: Magic Pigeon LTD
+Implementation-Version: 12.2.1.3.7
+Specification-Version: 1.0
+
