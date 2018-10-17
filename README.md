@@ -67,7 +67,7 @@ Example:
 <af:region id="oc_9219916555r3zVmd1" value="#{bindings.r3zVmd1.regionModel}" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"/>
 ```
 **Page Definition**
-```
+```html
 <executables>
       ...
       <taskFlow Refresh="ifNeeded" activation="deferred" id="r3zVmd1" taskFlowId="/WEB-INF/com/magicpigeon/wcp/extension/view/tf/logininternalapi/LoginInternalAPI-tf#LoginInternalAPI-tf" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
