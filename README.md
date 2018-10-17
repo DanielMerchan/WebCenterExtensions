@@ -71,5 +71,5 @@ Example:
 <executables>
       ...
       <taskFlow Refresh="ifNeeded" activation="deferred" id="r3zVmd1" taskFlowId="/WEB-INF/com/magicpigeon/wcp/extension/view/tf/logininternalapi/LoginInternalAPI-tf#LoginInternalAPI-tf" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
-   </executables>
+</executables>
 ```
