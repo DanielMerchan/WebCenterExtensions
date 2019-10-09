@@ -45,9 +45,12 @@ The importan part is *DashboardParameters=%28ProcessSelection%3D%5BALL%5D%3B%29&
    - Give a minimum height. E.g.: 800px
    
 ## Login
+
+![alt text](https://raw.githubusercontent.com/DanielMerchan/WebCenterExtensions/master/login-tf-wcp.png)
+
 This project contains the following artifacts:
 - **LoginInternalAPI Task Flow**: This Task Flow uses Internal WebCenter Portal 12c API (EL Expressions) to perform Login. It is compatible with OAM / WCP Login. *Note: Using Internal API is riskly as it can be modified in future releases / patches*
-- **LoginJavaAPI Task Flow**: This Task Flow uses Jakarta EE (formerly called Java EE) HTTPServletRequest API for doing authentication. *Note: The WebLogic Servlets Authenticators has been deprecated in 12c*
+- **LoginJavaAPI Task Flow**: This Task Flow uses Jakarta EE (formerly called Java EE) HttpServletRequest API for doing authentication. *Note: The WebLogic Servlets Authenticators has been deprecated in 12c*
 
 ### Installation
 - Deploy the ADF JAR Library as a shared-library using the Deployer Project and reference it from your Portal Extension shared library (extend.spaces.webapp.war)
@@ -56,3 +59,17 @@ This project contains the following artifacts:
 - Add it to a Resource Catalog and add the Task Flow as part of your WCP Portal Pages.
 - Add it to a Resource Catalog and add the Task Flow as part of your WCP Portal Page Templates.
 - Add it manually to a Page Template in design time by usign ``<af:region>`` and registering it manually in the corresponding pageDefinition.
+
+Example:
+
+**Page**
+```html
+<af:region id="oc_9219916555r3zVmd1" value="#{bindings.r3zVmd1.regionModel}" xmlns:af="http://xmlns.oracle.com/adf/faces/rich"/>
+```
+**Page Definition**
+```html
+<executables>
+      ...
+      <taskFlow Refresh="ifNeeded" activation="deferred" id="r3zVmd1" taskFlowId="/WEB-INF/com/magicpigeon/wcp/extension/view/tf/logininternalapi/LoginInternalAPI-tf#LoginInternalAPI-tf" xmlns="http://xmlns.oracle.com/adf/controller/binding"/>
+</executables>
+```
