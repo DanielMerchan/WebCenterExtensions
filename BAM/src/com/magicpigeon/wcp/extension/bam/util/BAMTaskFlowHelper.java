@@ -17,7 +17,7 @@ import javax.naming.NamingException;
 
 import oracle.adf.share.ADFContext;
 
-//import oracle.tip.tools.ide.bam.rc.connection.BAMProviderImpl;
+import oracle.tip.tools.ide.bam.rc.connection.BAMProviderImpl;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -67,11 +67,11 @@ public final class BAMTaskFlowHelper {
      * @return - BAMProviderImpl
      * @throws NamingException
      */
-//    public static BAMProviderImpl GetConnection(String connectionName) throws NamingException {
-//        Context ctx = ADFContext.getCurrent().getConnectionsContext();
-//        BAMProviderImpl bamProvider = (BAMProviderImpl) ctx.lookup(connectionName);;
-//        return bamProvider;
-//    }
+    public static BAMProviderImpl GetConnection(String connectionName) throws NamingException {
+        Context ctx = ADFContext.getCurrent().getConnectionsContext();
+        BAMProviderImpl bamProvider = (BAMProviderImpl) ctx.lookup(connectionName);;
+        return bamProvider;
+    }
     
     /**
      * Retrieves the current locale loaded in the ADF Context
@@ -114,26 +114,26 @@ public final class BAMTaskFlowHelper {
      * @return String
      */
     // FIXME: Remove the dependency with BAM Connection
-//    public static String generateURLFromBAMConn(BAMProviderImpl mBAMConnection) {
-//        StringBuilder url = new StringBuilder(StringUtils.EMPTY);
-//        final String webTierProtocol = mBAMConnection.getWebTierProtocol();
-//        url.append(webTierProtocol);
-//        url.append("://");
-//        // 1. URL using the Front (Web Tier or LBR)
-//        final String webTierHost = mBAMConnection.getWebTierHost();
-//        int webTierHostPort = mBAMConnection.getWebTierHostPort();
-//        final String bamServerHost = mBAMConnection.getBAMServerHost();
-//        final String bamServerPort = mBAMConnection.getBAMServerPort();
-//        // 2. URL directly to the WL Cluster / Managed Server
-//        if (StringUtils.isNotEmpty(webTierHost)) {
-//            url.append(webTierHost);
-//            url.append(":");
-//            url.append(String.valueOf(webTierHostPort));
-//        } else if (StringUtils.isNotEmpty(bamServerHost)) {
-//            url.append(bamServerHost);
-//            url.append(":");
-//            url.append(String.valueOf(bamServerPort));
-//        }
-//        return url.toString();                                       
-//    }
+    public static String generateURLFromBAMConn(BAMProviderImpl mBAMConnection) {
+        StringBuilder url = new StringBuilder(StringUtils.EMPTY);
+        final String webTierProtocol = mBAMConnection.getWebTierProtocol();
+        url.append(webTierProtocol);
+        url.append("://");
+        // 1. URL using the Front (Web Tier or LBR)
+        final String webTierHost = mBAMConnection.getWebTierHost();
+        int webTierHostPort = mBAMConnection.getWebTierHostPort();
+        final String bamServerHost = mBAMConnection.getBAMServerHost();
+        final String bamServerPort = mBAMConnection.getBAMServerPort();
+        // 2. URL directly to the WL Cluster / Managed Server
+        if (StringUtils.isNotEmpty(webTierHost)) {
+            url.append(webTierHost);
+            url.append(":");
+            url.append(String.valueOf(webTierHostPort));
+        } else if (StringUtils.isNotEmpty(bamServerHost)) {
+            url.append(bamServerHost);
+            url.append(":");
+            url.append(String.valueOf(bamServerPort));
+        }
+        return url.toString();                                       
+    }
 }

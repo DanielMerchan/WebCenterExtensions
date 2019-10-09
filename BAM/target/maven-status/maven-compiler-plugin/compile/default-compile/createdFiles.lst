@@ -1,0 +1,3 @@
+com\magicpigeon\wcp\extension\bam\resource\BAMLibraryBundle.class
+com\magicpigeon\wcp\extension\bam\util\BAMLogger.class
+com\magicpigeon\wcp\extension\bam\jsf\BAMTaskFlowParameters.class

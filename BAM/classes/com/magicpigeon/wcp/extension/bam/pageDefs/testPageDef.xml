@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<pageDefinition xmlns="http://xmlns.oracle.com/adfm/uimodel" version="12.2.1.16.48" id="testPageDef"
+                Package="com.magicpigeon.wcp.extension.bam.pageDefs">
+  <parameters/>
+  <executables>
+    <variableIterator id="variables"/>
+    <taskFlow id="BAMDashboardtf1"
+              taskFlowId="/WEB-INF/com/magicpigeon/wcp/extension/bam/jsf/taskflow/bam-dashboard/BAM-Dashboard-tf.xml#BAM-Dashboard-tf"
+              activation="deferred" xmlns="http://xmlns.oracle.com/adf/controller/binding">
+      <parameters>
+        <parameter id="bamConnectionName" value="BAMServerConnection"/>
+        <parameter id="project" value="ProcessAnalytics_v2"/>
+        <parameter id="dashboard" value="CycleTime"/>
+        <parameter id="dashboardParameters" value="ProcessSelection=[ALL];TimePeriodInDays=30;ShowTopN=10;"/>
+      </parameters>
+    </taskFlow>
+  </executables>
+  <bindings/>
+</pageDefinition>

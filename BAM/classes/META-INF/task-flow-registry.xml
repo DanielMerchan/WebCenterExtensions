@@ -1,0 +1,9 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<task-flow-registry xmlns="http://xmlns.oracle.com/adf/controller/rc">
+   <task-flow-descriptor path="WEB-INF/com/magicpigeon/wcp/extension/bam/jsf/taskflow/bam-dashboard/BAM-Dashboard-tf.xml" id="BAM-Dashboard-tf" display-name="BAM Dashboard" description="Loads a BAM Dashboard calculated by the given parameters" type="task-flow-definition" uses-page-fragments="true" library-internal="false" remote-invocable="false" train="false" critical="false" page-type="facelets">
+      <input-parameter name="dashboardParameters"/>
+      <input-parameter name="project"/>
+      <input-parameter name="bamConnectionName"/>
+      <input-parameter name="dashboard"/>
+   </task-flow-descriptor>
+</task-flow-registry>
